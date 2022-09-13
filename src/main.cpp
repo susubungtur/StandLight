@@ -4,6 +4,7 @@
 #include <wiringPi.h>   // delay 사용시 필요.
 #include "Listener.h"
 #include "Controller.h"
+#include "View.h"
 
 int main()
 {
@@ -11,12 +12,14 @@ int main()
 
     Button button1(27);
     Led led1(25);
-    Controller control(&led1);
+    View view(&led1);
+    Controller control(&view);
     Listener listener(&button1, &control);
 
     while (1)
     {
         listener.checkEvent();
+        view.lightView();
         delay(50);
     }
     
