@@ -3,14 +3,16 @@
 #include "Led.h"
 #include <wiringPi.h>   // delay 사용시 필요.
 #include "Listener.h"
+#include "Controller.h"
 
 int main()
 {
     std::cout << "Hello World!" << std::endl;
 
-    Button Button1(27);
+    Button button1(27);
     Led led1(25);
-    Listener listener(&Button1, &led1);
+    Controller control(&led1);
+    Listener listener(&button1, &control);
 
     while (1)
     {
